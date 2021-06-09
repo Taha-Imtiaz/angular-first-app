@@ -1,21 +1,255 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>Hello world</h1>
+{{title}}
 
-<router-outlet></router-outlet>
+<!-- Interpolation -->
+
+<h1>Angular Interpolation</h1>
+{{name}}
+
+<!-- functions -->
+<h2>{{getMyName()}}</h2>
+
+<!-- Objects -->
+<h2>{{obj.name}} {{obj.age}} </h2>
+
+<!-- arrays -->
+<!-- access first element of array  -->
+<h2> {{arr[0]}} {{arr.length}} </h2>
+
+<!-- Arithmetic opetrations -->
+<p> {{10+4+8}} {{a+b}} </p>
+
+<!-- Do not assign vales to variables -->
+<!-- <span> {{a= 10}} </span> -->
+<span> {{url}} </span>
+
+<!-- do not use window object in html file -->
+<!-- <span> {{window.location.href}} </span> -->
+
+<!-- Components -->
+<h2>Components in Angular</h2>
+<!-- include userList component in app which is inside app -->
+<app-user-list></app-user-list>
+
+<!-- include login component in app which is inside app -->
+<app-login></app-login>
+
+<!-- include signup component in app which is inside app -->
+<app-signup></app-signup>
+
+<!-- call a function in angular -->
+<!-- <button (click) = "getName('Daniyal')">Get Name</button> -->
+
+<button (click)="customEvent('This is my custom event')">Click Me</button>
+
+<!-- <br><br> -->
+<!-- keyup on pressing a key -->
+<!-- <input type="text" (keyup) = "customEvent('key up event')"> -->
+<!-- Get input field value on the basis of id -->
+
+<!-- <input type="text" #box (keyup) = "customEvent(box.value)"> -->
+
+<!-- enter event -->
+<!-- <input type="text" #box (keyup.enter) = "customEvent(box.value)"> -->
+
+<!-- space event -->
+<!-- <input type="text" #box (keyup.space) = "customEvent(box.value)"> -->
+
+<!-- key down event -->
+<!-- <input type="text" #box (keydown) = "customEvent(box.value)"> -->
+
+<br><br>
+<!-- <input type="text"  (blur) = "customEvent('blur event')"> -->
+
+<!-- <div (mouseover) = "customEvent('mouse in')" style="background-color: aquamarine;">Mouse events</div> -->
+<!-- <div (mouseleave) = "customEvent('mouse in')" style="background-color: aquamarine;">Mouse events</div> -->
+
+<!-- get textbox value on
+1.value change
+2. button click
+-->
+<!-- <input type="text" value="" (keyup) ="getValue($event.target.value)"/>
+<input type="text" #textbox/>
+
+<button (click) = "getValue(textbox.value)">GET Value</button>
+<h2> {{currentVal}} </h2> -->
+
+<!-- ---------------Propperty binding -->
+<input type="text" [disabled]="disabledBox" [value]="myName">
+<br><br>
+
+<!-- ---------------Interpolation -->
+<input type="text" disabled={{disabledBox}} value={{myName}}>
+<button (click)="enableBox()">Enable TextBox</button>
+
+<!-- video #12 consitions -->
+<h2>Conditions in Angular</h2>
+
+<!-- show this h3 on the basis of if condition -->
+<!-- if show is true then ngIf should be visible if ishow is false then else should be visible -->
+<!-- <h3 *ngIf = "show else elseBlock">If Block</h3> -->
+
+<!--if show == yes then if block is visible on the basis of string -->
+<!-- if else block -->
+<!-- <h3 *ngIf = "show == 'yes' ; then ifBlock else elseBlock">If Block</h3>
+
+<ng-template #ifBlock>
+    <h3>If Block</h3>
+</ng-template>
+
+
+<ng-template #elseBlock>
+    <h3>Else Block</h3>
+</ng-template> -->
+
+<ng-template [ngIf]="show == 'red'">
+    <h2>Red Block</h2>
+</ng-template>
+
+<ng-template [ngIf]="show == 'green'">
+    <h2>Green Block</h2>
+</ng-template>
+<ng-template [ngIf]="show == 'blue'">
+    <h2>Blue Block</h2>
+</ng-template>
+
+<!-- video #13 Switch case in angular -->
+<h2>Switch Case</h2>
+<div [ngSwitch]="color">
+    <h2 style="color: red;" *ngSwitchCase="'red'">
+        red color
+    </h2>
+    <h2 style="color: green;" *ngSwitchCase="'green'">
+        green color
+    </h2>
+    <h2 style="color: blue;" *ngSwitchCase="'blue'">
+        blue color
+    </h2>
+</div>
+
+<!-- Video # 14 for loop in angular -->
+<h2>For loop in Angular</h2>
+
+<!-- array -->
+<h3 *ngFor="let item of data">
+    {{item}}
+</h3>
+
+<!-- array of objects -->
+<!-- <h3 *ngFor = "let item of dataArr">
+            {{item.name}} {{item.age}}
+        </h3> -->
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Email</td>
+
+    </tr>
+    <tr *ngFor="let item of dataArr">
+        <td> {{item.name}} </td>
+        <td> {{item.age}} </td>
+        <td> {{item.email}} </td>
+
+    </tr>
+
+</table>
+
+<!-- video # 15 Forms in Angular -->
+<h2>Forms in Angular</h2>
+
+<form #myForm="ngForm" (ngSubmit)="getUserValue(myForm.value)">
+    <input type="text" ngModel name="username" placeholder="Enter Username"><br><br>
+    <input type="text" ngModel name="age" placeholder="Enter Age"><br><br>
+    <input type="text" ngModel name="address" placeholder="Enter Address"><br><br>
+    <input type="password" ngModel name="password" placeholder="Enter Password"><br><br>
+
+    <button>Get User values</button>
+</form>
+
+<!-- Video #16 Header and footer angular -->
+<app-header></app-header>
+
+<h2>Header and Footer Components</h2>
+<app-footer></app-footer>
+
+<!-- video # 17 -->
+<h2>Style Binding in Angular</h2>
+
+<!-- Normal Style -->
+<h3 style="color: red;">Header 1</h3>
+
+<!-- style binding -->
+<h3 [style.backgroundColor]="'purple'"> Header 1</h3>
+
+<!-- Dynamic Style -->
+<h3 [style.backgroundColor]="myDynamicColor"> Dynamic Style 1</h3>
+
+<!-- conditional style -->
+<h3 [style.backgroundColor]="error ? 'red' : 'green'"> Conditional Style 1</h3>
+
+<!-- change color on button click -->
+<button (click)="changeColor()">Change Color</button>
+
+<!-- video # 18 Add Bootstrap-->
+<div class="alert alert-warning" role="alert">
+    A simple warning alert—check it out!
+</div>
+
+<!-- video # 19 -- add material in angular -->
+<h2>Add Material to Angular</h2>
+<!-- material button -->
+<button mat-button>Angular button</button>
+<button mat-raised-button color="warn">Warn</button>
+<!-- slider -->
+<mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+<mat-slider aria-label="unit(s)"></mat-slider>
+
+<!-- video # 20 -->
+<h2>Passing data to child component angular</h2>
+
+<!-- display users component -->
+<app-users [hero] = "myData" [myDataObj] = "dataObj"></app-users>
+
+
+<!-- Video #21 -->
+<!-- Reusable component in Angular -->
+<h2>Reusable Component</h2>
+<div *ngFor = "let data of users">
+    <app-users [myDataObj] = "data"></app-users>
+</div>
+
+<!-- video # 22 -->
+<h2>Send data from parentparentComponent to child Angular</h2>
+<app-users (parentComponent) = "parentComponent($event)"></app-users>
+<h3> {{myNewName}} </h3>
+
+<!-- Video #23 -->
+<h2>Pips in Angular</h2>
+
+<!-- use pips -->
+<!-- {{name | opetration}} -->
+<!-- convert name to uppercase -->
+<h2> {{currentNmae | uppercase}} </h2>
+
+<!-- convert name to titlecase -->
+<h2> {{currentNmae | titlecase}} </h2>
+
+<!-- convert name to lowercase -->
+<h2> {{currentNmae | lowercase}} </h2>
+
+<!-- pips on formatting date -->
+<h2> {{todayDate | date}} </h2>
+
+<!-- display full date -->
+<h2> {{todayDate | date:'fullDate'}} </h2>
+
+<!-- spilliting string  slice string from index 1-->
+<h2> {{str | slice:1}} </h2>
+<h2> {{str | slice:2:5}} </h2>
+
+<!-- currency value -->
+<p>{{currencyValue | currency:"USD"}}</p>
+<p>{{currencyValue | currency:"CAD"}}</p>
+
+
